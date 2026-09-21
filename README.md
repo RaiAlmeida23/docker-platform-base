@@ -52,3 +52,7 @@ Depois que o Portainer e o NPM estiverem no ar, siga esta ordem:
    Portainer no `docker run`)
 3. NPM: **Stacks → Update the stack → Pull and redeploy**
 4. Portainer: `docker pull`, remover o container e recriar com o mesmo volume
+
+## Licença
+
+Distribuído sob a licença MIT. Veja o arquivo [LICENSE](LICENSE).
