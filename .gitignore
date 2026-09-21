@@ -1,0 +1,27 @@
+# Segredos e variáveis reais
+.env
+*.env
+!.env.example
+
+# Backups e dados
+backups/
+*.tar.gz
+*.sql
+*.dump
+
+# Certificados e chaves
+*.pem
+*.key
+*.crt
+*.pfx
+
+# Volumes e dados locais
+data/
+volumes/
+
+# Arquivos do sistema e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
