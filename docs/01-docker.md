@@ -1,4 +1,4 @@
-# Docker: conceitos, instalação e boas práticas
+# Docker: conceitos, instalação, comandos e boas práticas
 
 ## Parte 1: O que é o Docker
 Docker é uma plataforma que permite empacotar uma aplicação junto com tudo que ela precisa para rodar (bibliotecas, dependências, configurações) em uma unidade chamada container. Esse container roda de forma isolada, mas compartilha o kernel do sistema operacional do host, o que o torna muito mais leve do que uma máquina virtual tradicional.
@@ -77,5 +77,66 @@ sudo apt remove docker docker-engine docker.io containerd runc
   docker --version # exibe a versão
   ```
 
-## Parte 3: Boas práticas
+## Parte 3: Comandos
+
+### Comandos básicos
+```bash
+docker --version              # Mostra a versão instalada do Docker
+docker info                   # Exibe informações detalhadas sobre o Docker
+docker help                   # Lista os comandos disponíveis
+```
+### Gerenciamento do serviço
+```bash
+systemctl start docker        # Inicia o serviço do Docker
+systemctl enable docker       # Configura o Docker para iniciar automaticamente junto com o sistema operacional
+systemctl status docker       # Exibe o status atual do serviço
+```
+
+### Imagens
+```bash
+docker pull <imagem>          # Baixa uma imagem do Docker Hub
+docker images                 # Lista as imagens disponíveis localmente
+docker rmi <imagem>           # Remove uma imagem
+docker build -t nome:tag .    # Cria uma imagem a partir de um Dockerfile
+```
+
+### Contêineres
+```bash
+docker run <imagem>           # Cria e executa um contêiner
+docker run -it <imagem> bash  # Executa um contêiner interativo com bash
+docker ps                     # Lista contêineres em execução
+docker ps -a                  # Lista todos os contêineres (inclusive parados)
+docker stop <id>              # Para um contêiner
+docker start <id>             # Inicia um contêiner parado
+docker restart <id>           # Reinicia um contêiner
+docker rm <id>                # Remove um contêiner parado
+```
+
+### Volumes (dados)
+```bash
+docker volume ls              # Lista volumes
+docker volume create nome     # Cria um volume
+docker volume rm nome         # Remove um volume
+```
+
+### Logs e Execução
+```bash
+docker logs <id>              # Exibe os logs de um contêiner
+docker exec -it <id> bash     # Acessa um contêiner em execução
+```
+
+### Redes
+```bash
+docker network ls             # Lista redes
+docker network create nome    # Cria uma rede
+docker network rm nome        # Remove uma rede
+```
+
+### Limpeza
+```bash
+docker system prune           # Remove contêineres, imagens e redes não usados
+docker image prune            # Remove apenas imagens não utilizadas
+```
+
+## Parte 4: Boas práticas
 
