@@ -140,3 +140,62 @@ docker image prune            # Remove apenas imagens não utilizadas
 
 ## Parte 4: Boas práticas
 
+### Configuração do daemon
+Arquivo `/etc/docker/daemon.json` (exemplo em
+[`docker/daemon.json.example`](../docker/daemon.json.example)):
+
+```json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  },
+  "live-restore": true
+}
+```
+
+Aplicar:
+
+```bash
+sudo systemctl restart docker
+```
+
+| Opção | Motivo |
+|---|---|
+| `log-opts` | Evita que logs de containers encham o disco |
+| `live-restore` | Mantém os containers rodando durante um restart do daemon |
+
+### Rede
+- Redes nomeadas por função, nunca a `bridge` padrão para produção
+- Ex.: `proxy` (exposta ao NPM), `internal` (bancos de dados, sem acesso externo)
+- Evitar publicar portas de serviços que só devem ser acessados via proxy
+
+### Volumes
+- Preferir **volumes nomeados** (`docker volume create`) a bind mounts,
+  exceto quando o objetivo é editar arquivos de configuração do host
+- Nomear pelo padrão `<servico>_data`, `<servico>_config`
+
+### Versionamento de imagens
+- Nunca usar `latest` em produção
+- Fixar a tag (ex.: `portainer-ce:2.21.5`)
+- Documentar a versão em uso no `.env.example` de cada stack
+- Atualizar de forma deliberada, com backup antes
+
+### Usuário não-root
+Quando a imagem permitir, rodar como usuário sem privilégios:
+
+```yaml
+user: "1000:1000"
+```
+
+### Limites de recursos
+```yaml
+deploy:
+  resources:
+    limits:
+      cpus: "1.0"
+      memory: 512M
+```
+
+Evita que um container consuma todos os recursos do host.
