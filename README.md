@@ -16,6 +16,14 @@ flowchart LR
     P -->|docker.sock| D[Docker Engine]
 ```
 
+## Componentes
+
+| Componente | Função | Porta |
+|---|---|---|
+| Docker Engine | Runtime de containers | - |
+| Portainer CE | Gerenciamento de containers | 9443 |
+| Nginx Proxy Manager | Proxy reverso e TLS | 80, 443, 81 (local) |
+
 ## Pré-requisitos
 
 - Linux (Ubuntu/Debian recomendado), 2 vCPU, 4 GB RAM
