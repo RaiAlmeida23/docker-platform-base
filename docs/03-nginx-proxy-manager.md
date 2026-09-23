@@ -110,17 +110,26 @@ docker run --rm \
 ```
 
 ## Parte 4: Boas práticas
+### Configurar um Proxy Host
 
-### Criar o Proxy Host do Portainer
-1. **Hosts → Proxy Hosts → Add Proxy Host**
-2. Preencher:
-   - Domain Names: `portainer.example.com`
-   - Scheme: `https`
-   - Forward Hostname: `portainer`
-   - Forward Port: `9443`
-3. Aba **SSL**: solicitar certificado (Let's Encrypt com DNS challenge, ou
-   importar de uma CA interna) e habilitar **Force SSL**
-4. Salvar e validar o acesso pelo domínio
+Processo geral para publicar qualquer serviço interno através do NPM:
+
+1. No menu lateral do NPM, clicar em **Proxy Hosts**
+2. Clicar em **Add Proxy Host**
+3. Preencher os campos principais:
+   - **Domain Names**: o domínio ou subdomínio configurado no DNS (ex.: `app.seudominio.com`)
+   - **Scheme**: `http` ou `https`, de acordo com o serviço interno
+   - **Forward Hostname / IP**: nome do container (preferível) ou IP/servidor do serviço interno
+   - **Forward Port**: porta do serviço interno (ex.: `3000`)
+4. Na aba **SSL**:
+   - Marcar **Request a new SSL Certificate**
+   - Selecionar **Force SSL** e **HTTP/2 Support**
+5. Clicar em **Save**
+
+> O NPM gera automaticamente um certificado válido via Let's Encrypt. Se a
+> aplicação rodar apenas localmente (sem domínio público resolvível), será
+> necessário usar um certificado SSL autoassinado ou uma CA interna, já que
+> o desafio do Let's Encrypt não consegue validar o domínio.
 
 ### Segurança
 - Painel admin (porta 81) restrito a `127.0.0.1`, acessado por túnel SSH ou VPN
