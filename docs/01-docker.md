@@ -142,7 +142,7 @@ docker image prune            # Remove apenas imagens não utilizadas
 
 ### Configuração do daemon
 Arquivo `/etc/docker/daemon.json` (exemplo em
-[`docker/daemon.json.example`](../docker/daemon.json.example)):
+[`/daemon.json.example`](../daemon.json.example)):
 
 ```json
 {
