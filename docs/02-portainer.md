@@ -134,7 +134,7 @@ docker run --rm \
 > preencha-as em **Environment variables** ao criar a stack.
 
 ### Integração com o proxy reverso
-1. Implantar o Nginx Proxy Manager como stack (ver [03-nginx-proxy-manager.md](02-nginx-proxy-manager.md))
+1. Implantar o Nginx Proxy Manager como stack (ver [03-nginx-proxy-manager.md](03-nginx-proxy-manager.md))
 2. Criar o Proxy Host apontando para `portainer:9443` (esquema HTTPS)
 3. Validar o acesso pelo domínio
 4. **Hardening:** recriar o container sem publicar a porta 9443, ou restringi-la a `127.0.0.1:9443:9443`
