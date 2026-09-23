@@ -78,15 +78,6 @@ Depois que o Portainer e o NPM estiverem no ar, siga esta ordem:
 ├── .gitignore
 └── LICENSE
 ```
-
-## Roadmap
-
-- [x] Docker + Portainer + Nginx Proxy Manager
-- [ ] Authentik (SSO)
-- [ ] Vaultwarden
-- [ ] Zabbix + Grafana
-- [ ] GLPI, Wiki, Mattermost
-
 ## Licença
 
 Distribuído sob a licença MIT. Veja o arquivo [LICENSE](LICENSE).
